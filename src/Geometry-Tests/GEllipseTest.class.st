@@ -20,3 +20,17 @@ GEllipseTest >> testEquals [
 		assert: (GEllipse center: 10 @ 10 a: 5 b: 10) hash
 		equals: (GEllipse center: 10 @ 10 a: 5 b: 10) hash
 ]
+
+{ #category : #tests }
+GEllipseTest >> testNotEquals [
+
+	self
+		deny: (GCircle center: 2 @ 2 radius: 3)
+		equals: (GEllipse center: 5 @ 5 a: 2 b: 3).
+	self
+		deny: (GEllipse center: 10 @ 10 a: 5 b: 10)
+		equals: (GEllipse center: 5 @ 5 a: 2 b: 3).
+	self
+		deny: (GEllipse center: 10 @ 10 a: 5 b: 10) hash
+		equals: (GEllipse center: 5 @ 5 a: 2 b: 3) hash
+]
