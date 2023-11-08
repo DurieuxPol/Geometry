@@ -7,6 +7,12 @@ Point >> =~ aPoint [
 ]
 
 { #category : #'*Geometry' }
+Point >> dist: aPoint [
+
+	^ self distanceTo: aPoint
+]
+
+{ #category : #'*Geometry' }
 Point >> has: aPoint onTheSameSideAs: p [
 	(self x <= p x) 
 		ifTrue:[ self y <= p y
