@@ -22,6 +22,14 @@ GEllipseTest >> testEquals [
 ]
 
 { #category : #tests }
+GEllipseTest >> testHash [
+
+	self
+		assert: (GEllipse center: 10 @ 10 a: 5 b: 10) hash
+		equals: 17696867
+]
+
+{ #category : #tests }
 GEllipseTest >> testNotEquals [
 
 	self
