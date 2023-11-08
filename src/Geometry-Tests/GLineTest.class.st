@@ -115,8 +115,65 @@ self
 GLineTest >> testEquel5 [
 
 	self
-		assert: (GLine a: 6000000 b: 6000000 c: 2000000) = (GLine a: 0.000006 b: 0.000006 c: 0.000002)
-		equals: true
+		assert: (GLine a: 6000000 b: 6000000 c: 2000000)
+			= (GLine a: 0.000006 b: 0.000006 c: 0.000002)
+		equals: true.
+	self
+		assert: (GLine a: 2 b: 5 c: 3) = (GLine a: 2 b: 5 c: 2)
+		equals: false.
+	self
+		assert: (GLine a: 2 b: 5 c: 3) = (GLine a: 1 b: 5 c: 3)
+		equals: false.
+	self
+		assert: (GLine a: 2 b: 5 c: 3) = (GLine a: 2 b: 4 c: 3)
+		equals: false.
+	self
+		assert: (GLine a: 1 b: 0 c: 0) = (GLine a: 6 b: 0 c: 0)
+		equals: true.
+	self
+		assert: (GLine a: 0 b: 0 c: 1) = (GLine a: 0 b: 0 c: 6)
+		equals: true.
+	self
+		assert: (GLine a: 5 b: 4 c: 4) = (GLine a: 0 b: 2 c: 2)
+		equals: false.
+	self
+		assert: (GLine a: 5 b: 4 c: 4) = (GLine a: 2 b: 2 c: 0)
+		equals: false.
+	self
+		assert: (GLine a: 4 b: 0 c: 4) = (GLine a: 2 b: 2 c: 2)
+		equals: false
+]
+
+{ #category : #tests }
+GLineTest >> testEquel6 [
+
+	self
+		assert: (GLine a: 1 b: 0 c: 0) = (GLine a: 0 b: 1 c: 0)
+		equals: false.
+	self
+		assert: (GLine a: 1 b: 0 c: 0) = (GLine a: 0 b: 0 c: 1)
+		equals: false.
+	self
+		assert: (GLine a: 0 b: 1 c: 0) = (GLine a: 1 b: 0 c: 0)
+		equals: false.
+	self
+		assert: (GLine a: 0 b: 1 c: 0) = (GLine a: 0 b: 0 c: 1)
+		equals: false.
+	self
+		assert: (GLine a: 0 b: 0 c: 1) = (GLine a: 1 b: 0 c: 0)
+		equals: false.
+	self
+		assert: (GLine a: 0 b: 0 c: 1) = (GLine a: 0 b: 1 c: 0)
+		equals: false.
+	self
+		assert: (GLine a: 0 b: 1 c: 1) = (GLine a: 1 b: 0 c: 0)
+		equals: false.
+	self
+		assert: (GLine a: 1 b: 0 c: 1) = (GLine a: 0 b: 1 c: 0)
+		equals: false.
+	self
+		assert: (GLine a: 1 b: 1 c: 0) = (GLine a: 0 b: 0 c: 1)
+		equals: false
 ]
 
 { #category : #tests }
@@ -142,6 +199,9 @@ self
 	assert: ((GSegment with:	((17674/229)@(14582/229)) with:(76.82622578909061@64.97050543967634)) 
 			asLine hasPoint: ((9244/147)@(1090/21)) withApproximation: 0.525738602984892 )
 	equals: true."
+self
+	assert: ((GLine a: -2 b: 1 c: -1) hasPoint: 1@3 withApproximation: 0)
+	equals: true
 ]
 
 { #category : #tests }
