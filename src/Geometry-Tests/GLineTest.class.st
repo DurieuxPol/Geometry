@@ -112,6 +112,14 @@ self
 ]
 
 { #category : #tests }
+GLineTest >> testEquel5 [
+
+	self
+		assert: (GLine a: 6000000 b: 6000000 c: 2000000) = (GLine a: 0.000006 b: 0.000006 c: 0.000002)
+		equals: true
+]
+
+{ #category : #tests }
 GLineTest >> testHasPoint [
 "self
 	assert: ((GLine a:(-50634/18737)b:(1594971/37474)c: (-183016593/74948)) 
@@ -164,6 +172,23 @@ self
 self
 	assert: ((GLine a: 0 b: 2 c: 0.5) parallelTo: (GLine a: 0 b: 2 c: 0.5))
 	equals: true.
+self
+	assert: ((GLine a: 1 b: 0 c: 0.5) parallelTo: (GLine a: 2 b: 0 c: 4))
+	equals: true
+.
+self
+	assert: ((GLine a: 0 b: 0 c: 0) parallelTo: (GLine a: 0 b: 0 c: 0))
+	equals: true
+]
+
+{ #category : #tests }
+GLineTest >> testThroughAnd [
+
+	| l1 l2 |
+	l1 := GLine through: 2 @ 3 and: 3 @ 3.
+	l2 := GLine through: 2 @ 2 and: 2 @ 3.
+	self assert: l1 equals: (GLine a: 0 b: 1 c: -3).
+	self assert: l2 equals: (GLine a: 1 b: 0 c: -2)
 ]
 
 { #category : #tests }
