@@ -49,7 +49,12 @@ or:
 				ifTrue:[ ( self b / line b ) asFloat =~ ( self c / line c ) asFloat ] 
 				ifFalse:[ ( line a ~=~ 0 and:[ line b ~=~ 0] )
 					ifTrue:[ ( self a / line a ) asFloat =~ ( self b / line b ) asFloat ] 
-					ifFalse:[ ( line a =~ 0 and: [ line c =~ 0 ] ) or: [ ( line b =~ 0 and: [ line c =~ 0 ] ) ]
+					ifFalse:[ line a ~=~ 0
+						ifTrue: [ self b =~ 0 and: [ self c =~ 0 ] ]
+						ifFalse: [ line b ~=~0
+							ifTrue: [ self a =~ 0 and: [ self c =~ 0 ] ]
+							ifFalse: [ self a =~ 0 and: [ self b =~ 0 ] ]
+						]
 					]
 				] 
 			]]]
