@@ -396,6 +396,21 @@ GSegmentTest >> testIntersect2 [
 ]
 
 { #category : #tests }
+GSegmentTest >> testIntersectionPointWithLine [
+
+	self
+		assert:
+			((GSegment with: 2 @ 0 with: 2 @ 3) intersectionPointWithLine:
+				 (GLine through: 0 @ 1 and: 2 @ 1))
+		equals: 2 @ 1.
+	self
+		assert:
+			((GSegment with: 2 @ 2 with: 2 @ 3) intersectionPointWithLine:
+				 (GLine through: 0 @ 1 and: 2 @ 1))
+		equals: nil
+]
+
+{ #category : #tests }
 GSegmentTest >> testIntersectionPointWithVector [
 	self
 		assert: ((GSegment with: 2 @ 0 with: 2 @ 3) intersectionPointWithRay: (GRay origin: 0 @ 0  direction:  3 @ 2))
@@ -409,6 +424,21 @@ GSegmentTest >> testIntersectionPointWithVector [
 	self
 		assert: ((GSegment with: 0 @ 0 with: 0 @ 3) intersectionPointWithRay: (GRay origin: 0 @ 0  direction:  1 @ 1))
 		equals: 0 @ 0.
+]
+
+{ #category : #tests }
+GSegmentTest >> testIntersectionPointWithVector2 [
+
+	self
+		assert:
+			((GSegment with: 0 @ 0 with: 0 @ 3) intersectionPointWithRay:
+				 (GRay origin: 1 @ 2 direction: 2 @ 2))
+		equals: nil.
+	self
+		assert:
+			((GSegment with: 0 @ 0 with: 0 @ 1) intersectionPointWithRay:
+				 (GRay origin: 0 @ 2 direction: 2 @ 2))
+		equals: nil
 ]
 
 { #category : #tests }
