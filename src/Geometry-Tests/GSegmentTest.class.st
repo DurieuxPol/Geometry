@@ -223,6 +223,52 @@ GSegmentTest >> testHas [
 ]
 
 { #category : #tests }
+GSegmentTest >> testHas2 [
+
+	self
+		assert: ((GSegment with: 0 @ 0 with: 2 @ 2) has: 2 @ 1)
+		equals: false.
+	self
+		assert: ((GSegment with: 0 @ 0 with: 2 @ 3) has: 2 @ 3)
+		equals: true.
+	self
+		assert: ((GSegment with: 0 @ 0 with: 2 @ 3) has: 0 @ 0)
+		equals: true.
+	self
+		assert: ((GSegment with: 2 @ 3 with: 0 @ 0) has: 2 @ 3)
+		equals: true.
+	self
+		assert: ((GSegment with: 2 @ 3 with: 0 @ 0) has: 0 @ 0)
+		equals: true.
+	self
+		assert: ((GSegment with: 2 @ 3 with: 0 @ 0) has: 1 @ (3/2))
+		equals: true
+]
+
+{ #category : #tests }
+GSegmentTest >> testHas3 [
+
+	self
+		assert: ((GSegment with: 2 @ 0 with: 2 @ 2) has: 2 @ 3)
+		equals: false.
+	self
+		assert: ((GSegment with: 2 @ 0 with: 2 @ 2) has: 2 @ -1)
+		equals: false.
+	self
+		assert: ((GSegment with: 2 @ 0 with: 2 @ 2) has: 2 @ 1)
+		equals: true.
+	self
+		assert: ((GSegment with: 0 @ 2 with: 2 @ 2) has: 3 @ 2)
+		equals: false.
+	self
+		assert: ((GSegment with: 0 @ 2 with: 2 @ 2) has: -1 @ 2)
+		equals: false.
+	self
+		assert: ((GSegment with: 0 @ 2 with: 2 @ 2) has: 1 @ 2)
+		equals: true
+]
+
+{ #category : #tests }
 GSegmentTest >> testHasPoint [
 
 	self assert:((GSegment with:  1 @ 3 with: 3 @ 0) hasPoint: 1 @ 3)
