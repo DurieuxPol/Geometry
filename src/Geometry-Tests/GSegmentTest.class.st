@@ -169,6 +169,31 @@ GSegmentTest >> testEqual3 [
 ]
 
 { #category : #tests }
+GSegmentTest >> testEqual4 [
+
+	self
+		assert: (GSegment with: 1 @ 1 with: 1 @ 1)
+			= (GSegment with: 1 @ 1 with: 1 @ 1)
+		equals: true.
+	self
+		assert: (GSegment with: 1 @ 2 with: 3 @ 4)
+			= (GSegment with: 1 @ 2 with: 3 @ 3)
+		equals: false.
+	self
+		assert: (GSegment with: 1 @ 2 with: 3 @ 3)
+			= (GSegment with: 1 @ 1 with: 3 @ 3)
+		equals: false.
+	self
+		assert: (GSegment with: 1 @ 2 with: 3 @ 4)
+			= (GSegment with: 3 @ 3 with: 1 @ 2)
+		equals: false.
+	self
+		assert: (GSegment with: 1 @ 2 with: 3 @ 3)
+			= (GSegment with: 3 @ 3 with: 1 @ 1)
+		equals: false
+]
+
+{ #category : #tests }
 GSegmentTest >> testExtendSegmVert [
 	| segm1 segm2 segm3 frame |
 	segm1 := (GSegment with: -2 @ 4 with: 2 @ 4).
