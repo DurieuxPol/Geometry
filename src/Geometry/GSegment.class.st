@@ -9,7 +9,7 @@ Class {
 		'v2',
 		'epsilon'
 	],
-	#category : 'Geometry'
+	#category : #Geometry
 }
 
 { #category : #'as yet unclassified' }
@@ -130,16 +130,14 @@ GSegment >> extendWith: point and: frame [
 
 { #category : #properties }
 GSegment >> has: p [
-	(self asLine hasPoint: p)
-	ifFalse:[^false]
-	ifTrue:[ ^((
-		((self v1 x <= p x and:[ p x <= self v2 x]) 
-						or:[ self v2 x <= p x and:[ p x <= self v1 x]]))
-		and:[ 
-			((self v1 y <= p y and:[ p y <= self v2 y]) 
-						or:[ self v2 y <= p y and:[ p y <= self v1 y]])])
-		]
 
+	(self asLine hasPoint: p)
+		ifFalse: [ ^ false ]
+		ifTrue: [
+			^ ((p x between: self v1 x and: self v2 x) or: [
+				   p x between: self v2 x and: self v1 x ]) and: [
+				  (p y between: self v1 y and: self v2 y) or: [
+					  p y between: self v2 y and: self v1 y ] ] ]
 ]
 
 { #category : #properties }
