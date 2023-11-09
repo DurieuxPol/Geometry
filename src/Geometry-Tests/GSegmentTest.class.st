@@ -305,6 +305,20 @@ GSegmentTest >> testHasPoint [
 ]
 
 { #category : #tests }
+GSegmentTest >> testHasPoint2 [
+
+	self
+		assert: ((GSegment with: 1 @ 1 with: 3 @ 3) hasPoint: 4 @ 4)
+		equals: false.
+	self
+		assert: ((GSegment with: 1 @ 3 with: 3 @ 1) hasPoint: 4 @ 2)
+		equals: false.
+	self
+		assert: ((GSegment with: 3 @ 1 with: 1 @ 3) hasPoint: 2 @ 0)
+		equals: false.
+]
+
+{ #category : #tests }
 GSegmentTest >> testIntersect [
 	self
 		assert: ((GSegment with: -1 @ -1 with: 1 @ 1) = (GSegment with: 1 @ 1 with: -1 @ -1))
