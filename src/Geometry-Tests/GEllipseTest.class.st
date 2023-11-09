@@ -30,6 +30,17 @@ GEllipseTest >> testHash [
 ]
 
 { #category : #tests }
+GEllipseTest >> testIntersectLineSegment [
+
+	self
+		assert: ((GEllipse center: 0 @ 0 a: 3 b: 2) intersectLineSegment:
+				 (GLineSegment from: 0 @ 0 to: 0 @ 3))
+		equals: {
+				(0 @ -2).
+				(0 @ 2) } asOrderedCollection
+]
+
+{ #category : #tests }
 GEllipseTest >> testNotEquals [
 
 	self
