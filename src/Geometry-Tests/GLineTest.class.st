@@ -219,6 +219,15 @@ self
 ]
 
 { #category : #tests }
+GLineTest >> testHash [
+
+	self assert: (GLine a: 1 b: 3 c: -2) hash equals: 242268498.
+	self
+		deny: (GLine a: 1 b: 3 c: -2) hash
+		equals: (GLine a: 1 b: 3 c: 2) hash
+]
+
+{ #category : #tests }
 GLineTest >> testIntersect [
 self
 	assert: ((GLine a: 2 b: -3 c: 0.5) intersect: (GLine a: 1 b: 1 c: -2))
@@ -256,6 +265,71 @@ self
 ]
 
 { #category : #tests }
+GLineTest >> testPointsWithDist1To [
+
+	self
+		assert: ((GLine a: -1 b: 1 c: 0) pointsWithDist: 2 to: 1 @ 1)
+		equals: {
+				(2.414213562373095 @ 2.414213562373095).
+				(-0.4142135623730949 @ -0.4142135623730949) }.
+	self
+		assert: ((GLine a: -2 b: 3 c: 0) pointsWithDist: 2 to: 3 @ 2)
+		equals: {
+				(4.664100588675687 @ 3.1094003924504583).
+				(1.3358994113243126 @ 0.8905996075495417) }.
+	self
+		assert: ((GLine a: 1 b: 0 c: -2) pointsWithDist: 2 to: 2 @ 1)
+		equals: {
+				(2 @ 3).
+				(2 @ -1) }
+]
+
+{ #category : #tests }
+GLineTest >> testPointsWithDistTo [
+
+	self
+		assert: ((GLine a: -1 b: 1 c: 0) pointsWithDist1: 2 to: 1 @ 1)
+		equals: {
+				(2.414213562373095 @ 2.414213562373095).
+				(-0.4142135623730949 @ -0.4142135623730949) }.
+	self
+		assert: ((GLine a: -2 b: 3 c: 0) pointsWithDist1: 2 to: 3 @ 2)
+		equals: {
+				(4.664100588675687 @ 3.1094003924504583).
+				(1.3358994113243126 @ 0.8905996075495417) }.
+	self
+		assert: ((GLine a: 1 b: 0 c: -2) pointsWithDist1: 2 to: 2 @ 1)
+		equals: {
+				(2 @ 3).
+				(2 @ -1) }
+]
+
+{ #category : #tests }
+GLineTest >> testPointsWithDistToRaiseError [
+
+	self
+		should: [ (GLine a: -2 b: 1 c: 0) pointsWithDist: 2 to: 1 @ 1 ]
+		raise: Error
+]
+
+{ #category : #tests }
+GLineTest >> testPrintOn [
+
+	self
+		assert:
+		(String streamContents: [ :s | (GLine a: 1 b: 2 c: 3) printOn: s ])
+		equals: '1x +2y +3 = 0'.
+	self
+		assert:
+		(String streamContents: [ :s | (GLine a: 1 b: 0 c: 0) printOn: s ])
+		equals: '1x +0y +0 = 0'.
+	self
+		assert:
+		(String streamContents: [ :s | (GLine a: 1 b: -2 c: -3) printOn: s ])
+		equals: '1x -2y -3 = 0'
+]
+
+{ #category : #tests }
 GLineTest >> testThroughAnd [
 
 	| l1 l2 |
@@ -276,4 +350,20 @@ self
 self
 	assert: ((GLine through: 1@1 and: 2@2)through: 1@1 and: 2@2 hasPoint: 2@1 )
 	equals: false.
+]
+
+{ #category : #tests }
+GLineTest >> testXFor [
+
+	self assert: ((GLine a: -3 b: 1 c: 0) xFor: 3) equals: 1.
+	self assert: ((GLine a: -3 b: 2 c: 0) xFor: 3) equals: 2.
+	self assert: ((GLine a: -3 b: 1 c: 2) xFor: 1) equals: 1
+]
+
+{ #category : #tests }
+GLineTest >> testYFor [
+
+	self assert: ((GLine a: -3 b: 1 c: 0) yFor: 1) equals: 3.
+	self assert: ((GLine a: -3 b: 2 c: 0) yFor: 2) equals: 3.
+	self assert: ((GLine a: -3 b: 1 c: 2) yFor: 1) equals: 1
 ]
