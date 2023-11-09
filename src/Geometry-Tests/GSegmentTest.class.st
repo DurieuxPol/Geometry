@@ -100,6 +100,30 @@ GSegmentTest >> testCutWith [
 ]
 
 { #category : #tests }
+GSegmentTest >> testCutWith2 [
+
+	self
+		assert: ((GSegment with: 1 @ 2 with: 2 @ 2) cutWith:
+				 (Rectangle origin: 0 @ 2 corner: 3 @ 0))
+		equals: (GSegment with: 1 @ 2 with: 2 @ 2).
+	self
+		assert: ((GSegment with: 20 @ 30 with: -10 @ 10) cutWith:
+				 (Rectangle origin: -15 @ 0 corner: 15 @ 15))
+		equals: (GSegment with: -5 / 2 @ 15 with: -10 @ 10).
+	self
+		assert:
+			((GSegment with: 1 @ 3 with: 5 @ 3) cutWith:
+				 (GPolygon newVertices: {
+						  (1 @ 5).
+						  (1 @ 2).
+						  (1 @ 4).
+						  (1 @ 1).
+						  (3 @ 1).
+						  (3 @ 5) })) v2
+		equals: 3 @ 3
+]
+
+{ #category : #tests }
 GSegmentTest >> testDist1 [
 self assert:(  ((GSegment with: ((838/41)@(4811/82)) with:((57583/914)@(56095/914))) dist: (57.998905906959145@61.11074842728413)) <=~ (2 * 0.02757564283371476 )  ) 
 	equals: true.
@@ -237,6 +261,29 @@ self assert:((GSegment with:  -2 @ 4 with: 2 @ 4) extendWith: 3 @ 4 and: frame)
 ]
 
 { #category : #tests }
+GSegmentTest >> testExtendWithAnd2 [
+
+	| frame |
+	frame := Rectangle origin: -5 @ 0 corner: 5 @ 5.
+	self
+		assert:
+		((GSegment with: -2 @ 4 with: 2 @ 4) extendWith: -3 @ 4 and: frame)
+		equals: (GSegment with: -3 @ 4 with: 5 @ 4).
+	self
+		assert:
+		((GSegment with: -2 @ 4 with: 2 @ 4) extendWith: -3 @ 4 and: frame)
+		equals: (GSegment with: 5 @ 4 with: -3 @ 4).
+	self
+		assert:
+		((GSegment with: -2 @ 4 with: 2 @ 4) extendWith: 3 @ 3 and: frame)
+		equals: (GSegment with: -2 @ 4 with: 2 @ 4).
+	self
+		assert:
+		((GSegment with: -2 @ 4 with: 2 @ 4) extendWith: 6 @ 4 and: frame)
+		equals: (GSegment with: 6 @ 4 with: -5 @ 4)
+]
+
+{ #category : #tests }
 GSegmentTest >> testHas [
 
 	self
@@ -315,7 +362,13 @@ GSegmentTest >> testHasPoint2 [
 		equals: false.
 	self
 		assert: ((GSegment with: 3 @ 1 with: 1 @ 3) hasPoint: 2 @ 0)
-		equals: false.
+		equals: false
+]
+
+{ #category : #tests }
+GSegmentTest >> testHash [
+
+	self assert: (GSegment with: 0 @ 1 with: 2 @ 3) hash equals: 1571190
 ]
 
 { #category : #tests }
