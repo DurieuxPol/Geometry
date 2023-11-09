@@ -24,6 +24,20 @@ GLineTest >> testCutWith [
 ]
 
 { #category : #tests }
+GLineTest >> testCutWith2 [
+
+	self
+		assert: ((GLine a: 0 b: 1 c: -3) cutWith: (GPolygon newVertices: {
+						  (1 @ 5).
+						  (1 @ 2).
+						  (1 @ 4).
+						  (1 @ 1).
+						  (3 @ 1).
+						  (3 @ 5) })) v2
+		equals: 3 @ 3
+]
+
+{ #category : #tests }
 GLineTest >> testDist [
 
 	self
