@@ -8,7 +8,7 @@ Class {
 		'rectangle',
 		'borderRadius'
 	],
-	#category : 'Geometry'
+	#category : #Geometry
 }
 
 { #category : #'instance creation' }
@@ -73,9 +73,13 @@ GRoundedRectangle >> encompassingRectangle [
 
 { #category : #comparing }
 GRoundedRectangle >> intersectLine: aLine [
-	(self corners flatCollect: [ :each | aLine intersectCircleArc: each ])
+	"same as intersectLineSegment:"
+
+	"(self corners flatCollect: [ :each | aLine intersectCircleArc: each ])
 		ifNotEmpty: [ :col | ^ col ].
-	^ aLine intersectRectangle: self rectangle
+	^ aLine intersectRectangle: self rectangle"
+
+	
 ]
 
 { #category : #comparing }
