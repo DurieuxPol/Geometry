@@ -54,6 +54,15 @@ GTriangleTest >> testCircumscribedCircle3 [
 ]
 
 { #category : #tests }
+GTriangleTest >> testCircumscribedCircle4 [
+
+	self
+		assert: (GTriangle with: 1000 @ 0 with: 50 @ 0 with: 0 @ 0)
+				circumscribedCircle
+		equals: nil
+]
+
+{ #category : #tests }
 GTriangleTest >> testIsDegenerate [
 	self
 		assert: (GTriangle with: 0 @ 0 with: 2 @ 0 with: 3 @ 0) isDegenerate.
@@ -95,6 +104,19 @@ self
 	assert: (GTriangle with: (-10@ -30) with:(-30@ -10) with:(-10@ -30))isDegenerate.
 
 
+]
+
+{ #category : #tests }
+GTriangleTest >> testIsDegenerate5 [
+
+	self assert:
+		(GTriangle with: 0 @ 0 with: 0 @ 3 with: 0 @ 1) isDegenerate.
+	self assert:
+		(GTriangle with: 0 @ 0 with: 0 @ 0 with: 0 @ 1) isDegenerate.
+	self assert:
+		(GTriangle with: 0 @ 0 with: 0 @ 3 with: 0 @ 3) isDegenerate.
+	self assert:
+		(GTriangle with: 0 @ 0 with: 0 @ 0 with: 0 @ 0) isDegenerate
 ]
 
 { #category : #tests }
