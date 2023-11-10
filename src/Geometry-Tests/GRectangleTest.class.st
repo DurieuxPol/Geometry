@@ -39,6 +39,18 @@ GRectangleTest >> testHasPoint [
 ]
 
 { #category : #tests }
+GRectangleTest >> testIntersectLineSegment [
+
+	self
+		assert:
+			((GRectangle origin: 1 @ 3 corner: 3 @ 0) intersectLineSegment:
+				 (GLineSegment from: 0 @ 2 to: 4 @ 2))
+		equals: {
+				(1 @ 2).
+				(3 @ 2) } asSet
+]
+
+{ #category : #tests }
 GRectangleTest >> testIntersectionPointWithRay [
  	self assert:((Rectangle origin:  1 @ 3 corner: 3 @ 0) intersectionPointWithRay: ((GRay origin: 2@1 direction: 4@1 )))
 		  equals: {3@1}
