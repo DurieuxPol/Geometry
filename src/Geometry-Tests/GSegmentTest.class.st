@@ -81,6 +81,23 @@ self assert:((GSegment with:  -2 @ 4 with: -2 @ 0) belowPoint: -4 @ 2 )
 ]
 
 { #category : #tests }
+GSegmentTest >> testBoundBy [
+
+	self
+		assert: ((GSegment with: 0 @ 0 with: 1 @ 1) boundBy: 0 @ 0)
+		equals: true.
+	self
+		assert: ((GSegment with: 0 @ 0 with: 1 @ 1) boundBy: 1 @ 1)
+		equals: true.
+	self
+		assert: ((GSegment with: 0 @ 0 with: 1 @ 1) boundBy: 1 @ 0)
+		equals: false.
+	self
+		assert: ((GSegment with: 0 @ 0 with: 0 @ 0) boundBy: 0 @ 0)
+		equals: true
+]
+
+{ #category : #tests }
 GSegmentTest >> testCutWith [
 	self
 		assert: ((GSegment with: -10 @ 10 with: 20 @ 30) cutWith: (Rectangle origin: -15 @ 0 corner: 15 @ 15 )) v1
@@ -471,6 +488,20 @@ GSegmentTest >> testLength1 [
 	self
 		assert: (GSegment with: -2 @ 1 with: 3 @ 4) length
 		equals: 34 sqrt
+]
+
+{ #category : #tests }
+GSegmentTest >> testLocationOf [
+
+	self
+		assert: ((GSegment with: 0 @ 0 with: 2 @ 2) locationOf: 1 @ 1)
+		equals: 0.
+	self
+		assert: ((GSegment with: 10 @ 10 with: 30 @ 20) locationOf: 15 @ 15)
+		equals: 1.
+	self
+		assert: ((GSegment with: 10 @ 10 with: 20 @ 30) locationOf: 15 @ 15)
+		equals: -1
 ]
 
 { #category : #tests }
